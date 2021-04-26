@@ -3,7 +3,15 @@ loadMore();
 var index = 0;
 var limit_items = 16;
 function loadMore() {
-    $.getJSON('products.json', function (products) {
+
+
+
+
+    $.ajax({
+        url: 'https://6075786f0baf7c0017fa64ce.mockapi.io/products',
+        type: 'GET',
+        dataType: 'json',
+        success: function (products) {
         for (var i = 0; i < limit_items; i++) {
             if (index++ >= products.length) {
                 $('#loadmore').hide();
@@ -19,6 +27,7 @@ function loadMore() {
         readySlick();
         index += limit_items - 16;
         limit_items = products.length;
+    }
     });
    
 }
